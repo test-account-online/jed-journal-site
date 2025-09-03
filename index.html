@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jed's August Journal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 1rem;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border: 4px solid #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-description p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            color: #4a5568;
+        }
+
+        .important {
+            display: block;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e91e63, #f06292);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1.5rem 0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            min-height: 100vh;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            margin-bottom: 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-date {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-content {
+            padding: 2.5rem;
+        }
+
+        .section-content h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-content p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Activity Lists */
+        .activity-list {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .activity-list h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .activity-list ul {
+            padding-left: 1.5rem;
+        }
+
+        .activity-list li {
+            margin: 0.8rem 0;
+            color: #4a5568;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .photo-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-placeholder {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        /* Highlight Elements */
+        .highlight {
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-container {
+                padding: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-content {
+                padding: 1.5rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-header {
+                padding: 1.5rem;
+            }
+            
+            .section-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Smooth animations */
+        * {
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header-nav">
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">Jed's August Journal</div>
+                <ul class="nav-menu">
+                    <li><a href="#home">About Me</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-container">
+                <img src="photo.png" alt="My Photo" class="profile-image">
+                
+                <div class="hero-content">
+                    <h1 class="hero-title">&lt;John Edward L. Evangelista&gt;</h1>
+                    <div class="hero-description">
+                        <p>Hello! My name is John Edward, but you can call me Jed. I'm a 9th-grade student at Light of the World Christian Academy of Makati, and I'm 14 years old. I love playing video games during my free time, and I also have a strong interest in history, as I enjoy learning about past events and how they influence the present.</p>
+                        <span class="important">Welcome to my August Journal!</span>
+                    </div>
+                    <a href="#activities" class="hero-btn">View my Journal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="activities">
+        <div class="container">
+            
+            <!-- Taiwan -->
+            <article class="content-section">
+                <div class="section-header">
+                    <h2>Taiwan Trip</h2>
+                    <div class="section-date">August 22–25, 2025</div>
+                </div>
+                <div class="section-content">
+                    <h3>Exploring Taipei and Ximending</h3>
+                    <p>
+                        From August 22 to 25, we traveled to Taiwan for a family trip. 
+                        The weather was hot, but that didn't stop us from enjoying every moment of sightseeing, shopping, and exploring the city's famous attractions.
+                    </p>
+                    <p>
+                        On August 22, we checked into our hotel at Midtown and then went shopping right after arrival. 
+                        We explored Ximending, where we bought shoes and clothes to kick off the trip.
+                    </p>
+                    <p>
+                        August 23 was one of the most exciting days as we visited the iconic <span class="highlight">Taipei 101 Observatory</span>. 
+                        The view from the 101st floor was breathtaking, and we took plenty of pictures. 
+                        Riding the high-speed elevator was a fun experience, and afterward, we shopped at the Taipei 101 Mall. 
+                        I even bought a pair of New Balance shoes and enjoyed a meal at McDonald's in the food court.
+                    </p>
+                    <p>
+                        On August 24, we returned to Ximending for another round of shopping, mostly for new clothes. 
+                        The lively atmosphere made the experience memorable.
+                    </p>
+                    <p>
+                        Our final day, August 25, was spent shopping once again in Ximending. 
+                        This time we bought clothes, shoes, souvenirs, and even a new pair of glasses before heading home. 
+                        It was the perfect way to wrap up the trip.
+                    </p>
+
+                    <div class="activity-list">
+                        <h4>Trip Highlights:</h4>
+                        <ul>
+                            <li>Stayed at Midtown Hotel</li>
+                            <li>Shopping in Ximending for clothes, shoes, and souvenirs</li>
+                            <li>Visited Taipei 101 Observatory (101st floor, high-speed elevator)</li>
+                            <li>Bought New Balance shoes at Taipei 101 Mall</li>
+                            <li>Ate McDonald's at the food court</li>
+                            <li>Got new glasses before heading home</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Buwan ng Wika -->
+            <article class="content-section">
+                <div class="section-header">
+                    <h2>Buwan ng Wika</h2>
+                    <div class="section-date">August 29, 2025</div>
+                </div>
+                <div class="section-content">
+                    <h3>Celebrating Language, Culture, and Teamwork</h3>
+                    <p>
+                        On August 29, we celebrated Buwan ng Wika. I was part of the <span class="highlight">Blue Lions</span>, and our team actively joined different events. 
+                        We placed <strong>1st in the Quiz Bee</strong>, which was one of our biggest achievements, and 4th place in the Sabayang Pagbigkas competition.
+                    </p>
+                    <p>
+                        For the Sabayang Pagbigkas, we practiced the Kabataan Filipino poem for about two weeks. 
+                        Although we didn't reach the top spot, the effort and teamwork we put in made the experience truly meaningful.
+                    </p>
+                    <p>
+                        We also joined the exhibition, where each group represented a region of the Philippines. 
+                        Our group showcased <span class="highlight">Bicol</span>, and I contributed by helping prepare and set up the decorations as well as doing research. 
+                        While we didn't win the championship, we proudly secured 3rd place.
+                    </p>
+                    <p>
+                        Overall, the celebration was a success. Everyone gave their best, and it was a memorable experience that highlighted teamwork, culture, and school spirit.
+                    </p>
+                    
+                    <div class="activity-list">
+                        <h4>Competition Highlights:</h4>
+                        <ul>
+                            <li>🏆 1st Place in the Quiz Bee</li>
+                            <li>📜 4th Place in Sabayang Pagbigkas – Kabataan Filipino</li>
+                            <li>🏝️ Represented Bicol region in the exhibition</li>
+                            <li>🥉 3rd Place overall in the exhibition showcase</li>
+                            <li>🤝 Teamwork and cultural appreciation throughout the events</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Photo Gallery -->
+            <section class="content-section" id="gallery">
+                <div class="section-header">
+                    <h2>August Activities Gallery</h2>
+                    <div class="section-date">Visual memories from my journey this August</div>
+                </div>
+                <div class="section-content">
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <img src="photo1.jpg" alt="Taiwan Trip Memory" class="gallery-image">
+                            </div>
+                            <div class="photo-caption">Exploring the Chiang Kai Chek Temple during our Taiwan family trip.</div>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <img src="photo2.jpg" alt="Taipei 101 Visit" class="gallery-image">
+                            </div>
+                            <div class="photo-caption">Standing tall at Taipei 101 Observatory - the breathtaking view from the 101st floor was absolutely incredible!</div>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <img src="photo3.jpg" alt="Buwan ng Wika Celebration" class="gallery-image">
+                            </div>
+                            <div class="photo-caption">Celebrating Buwan ng Wika with the Blue Lions team - representing Filipino culture and achieving great results together.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header-nav');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
