@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>August Journal - My TLE Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #673ab7;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #ede7f6, #d1c4e9);
+            padding: 3rem 1rem;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .hero-image img.profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid #673ab7;
+        }
+
+
+        .hero-content {
+            max-width: 600px;
+            color: black;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            background: #673ab7;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            background: #5e35b1;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            max-width: 200px;
+        }
+
+        .tips-section p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .content-section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .section-content h3 {
+            color: #673ab7;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Activity Lists */
+        .activity-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .activity-list ul, .activity-list ol {
+            padding-left: 1.5rem;
+        }
+
+        .activity-list li {
+            margin: 0.5rem 0;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .photo-item {
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #673ab7, #3f51b5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .photo-caption {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Highlight Elements */
+        .highlight {
+            background: linear-gradient(120deg, #fff3e0, #f3e5f5);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .important {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .code-snippet {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .tips-section {
+                position: static;
+                margin-top: 2rem;
+                max-width: none;
+            }
+
+            .section-content {
+                padding: 1.5rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header-nav">
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">My August Journal</div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#reflections">Reflections</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-image">
+                    <img src="photo.png" alt="My Photo" class="profile-image">
+                </div>
+                
+                <div class="hero-content">
+                    <h1 class="hero-title">&lt;John Edward L. Evangelista&gt;</h1>
+                    <div class="hero-description">
+                        <p>Hi! I'm a student passionate about Technology and Livelihood Education. I love learning about ICT, entrepreneurship, and practical life skills. This journal documents my journey through August, showcasing the activities, projects, and experiences that shaped my understanding of TLE.</p>
+                        <p>Through hands-on learning and collaborative projects, I've discovered how technology integrates with traditional skills to prepare us for the future workforce.</p>
+                    </div>
+                    <a href="#activities" class="hero-btn">View My Journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Week 1 Activities -->
+            <article class="content-section" id="activities">
+                <div class="section-header">
+                    <h2>Week 1: Getting Started</h2>
+                    <div class="section-date">August 1-7, 2024</div>
+                </div>
+                <div class="section-content">
+                    <h3>Introduction to TLE Components</h3>
+                    <p>
+                        The first week of August marked the beginning of our <span class="highlight">Technology and Livelihood Education</span> journey. We were introduced to the various components of TLE, including <strong>ICT</strong>, <em>Entrepreneurship</em>, and <span class="important">Home Economics</span>.
+                    </p>
+                    <p>
+                        Our teacher explained how TLE prepares us for real-world challenges by combining theoretical knowledge with practical applications. This approach helps develop both <span class="code-snippet">technical skills</span> and entrepreneurial mindset.
+                    </p>
+                    
+                    <div class="activity-list">
+                        <h4>Activities Completed:</h4>
+                        <ul>
+                            <li>Orientation on TLE curriculum and objectives</li>
+                            <li>Assessment of prior knowledge and skills</li>
+                            <li>Introduction to basic computer operations</li>
+                            <li>Team building activities for group projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+    <!-- Buwan ng Wika -->
+    <article class="content-section" id="reflections">
+        <div class="section-header">
+            <h2>Buwan ng Wika</h2>
+            <div class="section-date">August 29, 2025</div>
+        </div>
+        <div class="section-content">
+            <h3>Celebrating Language, Culture, and Teamwork</h3>
+            <p>
+                On August 29, we celebrated <span class="highlight">Buwan ng Wika</span>. I was part of the <strong>Blue Lions</strong>, and our team actively joined different events. 
+                We placed <span class="important">1st</span> in the Quiz Bee, which was one of our biggest achievements, and <strong>4th place</strong> in the Sabayang Pagbigkas competition.
+            </p>
+            <p>
+                For the Sabayang Pagbigkas, we practiced the <em>Kabataan Filipino</em> poem for about two weeks. 
+                Although we didn’t reach the top spot, the effort and teamwork we put in made the experience truly meaningful.
+            </p>
+            <p>
+                We also joined the exhibition, where each group represented a region of the Philippines. 
+                Our group showcased <span class="highlight">Bicol</span>, and I contributed by helping prepare and set up the decorations as well as doing research. 
+                While we didn’t win the championship, we proudly secured <strong>3rd place</strong>.
+            </p>
+            <p>
+                Overall, the celebration was a success. Everyone gave their best, and it was a memorable experience that highlighted <em>teamwork</em>, <em>culture</em>, and <em>school spirit</em>.
+            </p>
+            
+            <div class="activity-list">
+                <h4>Highlights of the Celebration:</h4>
+                <ul>
+                    <li>🏆 1st Place in the Quiz Bee</li>
+                    <li>🎭 4th Place in Sabayang Pagbigkas – Kabataan Filipino</li>
+                    <li>🌸 Represented Bicol region in the exhibition</li>
+                    <li>🥉 3rd Place overall in the exhibition showcase</li>
+                    <li>🤝 Teamwork and cultural appreciation throughout the events</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+
+            <!-- Photo Gallery -->
+            <section class="content-section" id="gallery">
+                <div class="section-header">
+                    <h2>August Activities Gallery</h2>
+                    <div class="section-date">Visual memories from our TLE journey</div>
+                </div>
+                <div class="section-content">
+                    <div class="photo-gallery">
+                        <div class="photo-item">
+                            <div class="photo-placeholder">Computer Lab Session</div>
+                            <div class="photo-caption">Learning basic computer operations and digital skills</div>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">Group Presentation</div>
+                            <div class="photo-caption">Presenting our business proposals to the class</div>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">Cooking Activity</div>
+                            <div class="photo-caption">Home economics practical session in the kitchen</div>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">Project Work</div>
+                            <div class="photo-caption">Collaborative work on entrepreneurship projects</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header-nav');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
